@@ -3,13 +3,17 @@
 library(facets)
 library(Cairo)
 
-getSDIR <- function () {
-	return("/cbio/ski/chan/home/riazn/programs/FACETS.app/");
+# HAL Location
+SDIR <- "/cbio/ski/chan/home/riazn/programs/FACETS.app/"
+
+# SABA Locaiton
+if ( is.na(file.info(SDIR)[1]) ) {
+	SDIR <- "/home/riazn/programs/FACETS.app"
 }
 
-source(file.path(getSDIR(),"r_scripts/funcs.R"))
-source(file.path(getSDIR(),"r_scripts/fPlots.R"))
-source(file.path(getSDIR(),"r_scripts/nds.R"))
+source(file.path(SDIR,"r_scripts/funcs.R"))
+source(file.path(SDIR,"r_scripts/fPlots.R"))
+source(file.path(SDIR,"r_scripts/nds.R"))
 
 buildData=installed.packages()["facets",]
 cat("#Module Info\n")
@@ -62,8 +66,7 @@ pre.CVAL=25
 dat=preProcSample(FILE,snp.nbhd=SNP_NBHD,cval=pre.CVAL,chromlevels=chromLevels)
 out=procSample(dat,cval=CVAL,min.nhet=MIN_NHET)
 
-print("FLAG from procSample")
-print(out$flags)
+
 f<-paste("results/",TAG,"_BiSeg.png",sep="")
 CairoPNG(file=f,height=1000,width=800)
 plotSample(out,chromlevels=chromLevels)
