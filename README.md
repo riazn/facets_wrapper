@@ -1,3 +1,7 @@
+# Modificaiton by Nadeem Riaz
+^-- slight code tweaks to update to facets 0.3
+^-- add code to run HRD Scores
+
 # FACETS.app
 
 Wrapper script which takes a tumor/normal BAM pair then
