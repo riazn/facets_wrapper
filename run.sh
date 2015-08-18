@@ -36,4 +36,4 @@ $SDIR/mergeTN.py $ODIR/${TBASE}.dat.gz $ODIR/${NBASE}.dat.gz | gzip -9 -c - >$OD
 #bsub -We 59 -o LSF/ -e Err/ -J f_FACETS_$$ -w "post_done(f_JOIN_$$)" \
     
 echo "Running FACETs"
-$SDIR/r_scripts/doFacets.R $ODIR/countsMerged____${TAG}.dat.gz
+Rscript $SDIR/r_scripts/doFacets.R $ODIR/countsMerged____${TAG}.dat.gz
