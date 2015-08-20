@@ -1,34 +1,26 @@
 #!/bin/bash
-# walltime : maximum wall clock time (hh:mm:ss)
-#PBS -l walltime=24:00:00
-#
-# do not join stdout and stderr
-#PBS -j n
-#
-# spool output immediately
-#PBS -k e
-#
-# specify queue
-#PBS -q batch
-#
-# nodes: number of nodes
-#   ppn: number of processes per node
-#PBS -l nodes=1:ppn=1
-#
-# Memory
-#PBS -l mem=16gb
-#
-echo "now here"	>> ~/test_out 
-# export all my environment variables to the job
-#PBS -V
-#
-# job name (default = name of script file)
-#PBS -N facets
-#
-echo "now here"	>> ~/test_out 
+# Set default shell to bash
+#$ -S /bin/bash
+# Set default memory limits
+#$ -l h_vmem=16G,virtual_free=16G
 
-echo "At Least made it here" > ~/junk
-echo "test2" >> ~/junk
+# Change directory to directory initiated in
+#$ -cwd
+
+# merge std error and std out into one file
+#$ -j y
+
+# email settings
+#$ -m sae
+
+#Job name
+#$ -N facets_pipeline
+
+# Read in bashrc
+if [ -f ~/.bashrc ] ; then
+    . ~/.bashrc
+fi
+
 
 #SDIR="$( cd "$( dirname "$0" )" && pwd )"
 export SDIR="/cbio/ski/chan/home/riazn/programs/FACETS.app"

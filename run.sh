@@ -1,6 +1,14 @@
 #!/bin/bash
 
-SDIR="$( cd "$( dirname "$0" )" && pwd )"
+#SDIR="$( cd "$( dirname "$0" )" && pwd )"
+
+# HAL Location
+export SDIR="/cbio/ski/chan/home/riazn/programs/FACETS.app"
+# saba location
+if [ ! -e $SDIR ]; then
+	export SDIR="/home/riazn/programs/FACETS.app"
+fi
+
 
 if [ "$#" -ne "2" ]; then
 	echo
@@ -22,10 +30,12 @@ ODIR=scratch/$TAG
 mkdir -p $ODIR
 
 #bsub -We 59 -o LSF/ -e Err/ -J f_COUNT_$$_N -R "rusage[mem=40]" \
-    
+
+echo "Creating base counts for Normal Sample"    
 $SDIR/getBaseCountsZZAutoWithName.sh $ODIR/${NBASE}.dat $NORMALBAM
-#bsub -We 59 -o LSF/ -e Err/ -J f_COUNT_$$_T -R "rusage[mem=40]" \
-    
+#bsub -We 59 -o LSF/ -e Err/ -J f_COUNT_$$_T -R "rusage[mem=40]" 
+
+echo "Creating base counts for Tumor Sample"  
 $SDIR/getBaseCountsZZAutoWithName.sh $ODIR/${TBASE}.dat $TUMORBAM
 
 #bsub -We 59 -o LSF/ -e Err/ -n 2 -R "rusage[mem=60]" -J f_JOIN_$$ -w "post_done(f_COUNT_$$_*)" \

@@ -36,14 +36,14 @@ else
 	exit
 fi
 
-echo $GENOME
-echo $SNPS
+echo "Genome = " $GENOME
+echo "SNP DB = " $SNPS
 
 MINCOV=0
 BASEQ=20
 MAPQ=15
 
-echo $SDIR/bin/GetBaseCounts \
+echo "GetBaseCount command: " $SDIR/bin/GetBaseCounts \
     --filter_improper_pair \
     --sort_output \
     --fasta $GENOME \
