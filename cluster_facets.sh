@@ -10,8 +10,8 @@
 # merge std error and std out into one file
 #$ -j y
 
-# email settings
-#$ -m sae
+# email settings (only send if job aborted or suspended)  (e = job ended)
+#$ -m sa
 
 #Job name
 #$ -N facets_pipeline

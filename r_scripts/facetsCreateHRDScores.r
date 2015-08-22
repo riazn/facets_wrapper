@@ -1,5 +1,5 @@
 rm(list=ls());
-
+library(Cairo);
 
 # HAL Location
 PDIR <- "/cbio/ski/chan/home/riazn/"
@@ -68,7 +68,7 @@ for (x in 1:length(FILE_LIST)) {
 	# make sure directory to output files exists
 	outf <- paste(cdir, "/", smp, ".png", sep="");
 
-	png(outf, width=2000, height=1300);
+	CairoPNG(outf, width=2000, height=1300);
 	par(mfrow=c(2,1), cex=2.0);
 	plotASCATsegments(chromInfo, segs,0,1-segs[1,"NormalFraction"])
 	title(smp);
